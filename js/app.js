@@ -13,3 +13,6 @@ function incrementCat() {
 
   return increment;
 }
+
+// Define the increment function
+let cat1In = incrementCat();
