@@ -16,3 +16,9 @@ function incrementCat() {
 
 // Define the increment function
 let cat1In = incrementCat();
+
+
+catPic.addEventListener('click', function() {
+  let clicks = cat1In();
+  cat1Clicks.innerText = clicks;
+});
