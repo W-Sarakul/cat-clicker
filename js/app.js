@@ -57,7 +57,7 @@ $(function() {
     },
     {
       name: 'Koya',
-      source: 'img/puc-5.jpeg',
+      source: 'img/pic-5.jpeg',
       clicks: 0
     }
   ]
@@ -65,6 +65,21 @@ $(function() {
   };
 
   var octopus = {
+    init: function() {
+      view.init();
+      octopus.chooseCat();
+    },
+    chooseCat: function() {
+      var catList = $('.cat-list')
+      catList.on('click', 'li', function() {
+        var clickElement = $(this);
+        model.data.forEach(function(cat, index) {
+          if (cat.name === clickElement.text()) {
+            view.render(model.data[index]);
+          }
+        })
+      })
+    }
 
   };
 
@@ -85,7 +100,8 @@ $(function() {
 
   };
 
-  view.init();
+
+  octopus.init();
 
 
 });
