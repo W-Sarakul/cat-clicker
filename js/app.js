@@ -69,6 +69,14 @@ $(function() {
   };
 
   var view = {
+    render: function(cat) {
+      var html = '';
+      html += `<div class="cat-container">
+      <p class="name">${cat.name}</p>
+      <p>You have clicked: ${cat.clicks} clicks</p>
+      <img src="${cat.source}" class="cat-image">
+      </div>`
+    }
 
   };
 
