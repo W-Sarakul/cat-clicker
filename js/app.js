@@ -91,6 +91,7 @@ $(function() {
         model.data.forEach(function(cat, index) {
           if (clickElement.attr('src') === cat.source) {
             model.addClick(index);
+            $('.number-of-clicks').text(model['data'][index]['clicks']);
           }
         });
       });
@@ -111,7 +112,7 @@ $(function() {
       var html = '';
       html += `<div class="cat-container">
       <p class="name">${cat.name}</p>
-      <p>You have clicked: ${cat.clicks} clicks</p>
+      <p>You have clicked: <span class="number-of-clicks">${cat.clicks}</span> clicks</p>
       <img src="${cat.source}" class="cat-image">
       </div>`
       $('.container').append(html);
