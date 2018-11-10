@@ -89,6 +89,10 @@ $(function() {
     },
 
     render: function(cat) {
+      if ($('.cat-container')) {
+        $('.cat-container').remove();
+      }
+
       var html = '';
       html += `<div class="cat-container">
       <p class="name">${cat.name}</p>
