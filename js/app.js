@@ -60,7 +60,11 @@ $(function() {
       source: 'img/pic-5.jpeg',
       clicks: 0
     }
-  ]
+  ],
+
+  addClick: function(index) {
+    model.data[index]['clicks']++;
+  }
 
   };
 
@@ -68,6 +72,7 @@ $(function() {
     init: function() {
       view.init();
       octopus.chooseCat();
+      octopus.addClick();
     },
     chooseCat: function() {
       var catList = $('.cat-list')
@@ -77,8 +82,18 @@ $(function() {
           if (cat.name === clickElement.text()) {
             view.render(model.data[index]);
           }
-        })
-      })
+        });
+      });
+    },
+    addClick: function() {
+      $('.container').on('click', '.cat-image', function() {
+        var clickElement = $(this);
+        model.data.forEach(function(cat, index) {
+          if (clickElement.attr('src') === cat.source) {
+            model.addClick(index);
+          }
+        });
+      });
     }
 
   };
