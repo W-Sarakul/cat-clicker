@@ -69,7 +69,9 @@ $(function() {
   };
 
   var view = {
-
+    init: function() {
+      view.render(model.data[0]);
+    },
 
     render: function(cat) {
       var html = '';
@@ -83,6 +85,7 @@ $(function() {
 
   };
 
-  
+  view.init();
+
 
 });
