@@ -62,9 +62,16 @@ $(function() {
     }
   ],
 
-  addClick: function(index) {
-    model.data[index]['clicks']++;
-  }
+  addClick: function(cat) {
+    cat.clicks++;
+  },
+
+  currentCat: {
+    name: 'Mang',
+    source: 'img/pic-1.jpeg',
+    clicks: 0
+  },
+
 
   };
 
@@ -80,20 +87,18 @@ $(function() {
         var clickElement = $(this);
         model.data.forEach(function(cat, index) {
           if (cat.name === clickElement.text()) {
-            view.render(model.data[index]);
+            model.currentCat = model.data[index];
+            view.render(model.currentCat);
           }
         });
       });
     },
+
     addClick: function() {
       $('.container').on('click', '.cat-image', function() {
         var clickElement = $(this);
-        model.data.forEach(function(cat, index) {
-          if (clickElement.attr('src') === cat.source) {
-            model.addClick(index);
-            $('.number-of-clicks').text(model['data'][index]['clicks']);
-          }
-        });
+        model.addClick(model.currentCat);
+        $('.number-of-clicks').text(model.currentCat.clicks);
       });
     }
 
@@ -115,7 +120,7 @@ $(function() {
       <p>You have clicked: <span class="number-of-clicks">${cat.clicks}</span> clicks</p>
       <img src="${cat.source}" class="cat-image">
       </div>`
-      $('.container').append(html);
+      $(html).insertBefore('.admin-button');
     }
 
   };
