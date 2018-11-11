@@ -80,6 +80,7 @@ $(function() {
       view.init();
       octopus.chooseCat();
       octopus.addClick();
+      octopus.adminMode();
     },
     chooseCat: function() {
       var catList = $('.cat-list')
@@ -99,6 +100,15 @@ $(function() {
         var clickElement = $(this);
         model.addClick(model.currentCat);
         $('.number-of-clicks').text(model.currentCat.clicks);
+      });
+    },
+
+    adminMode: function() {
+      $('.admin-button').on('click', function() {
+        // $('.edit-form').removeClass('.hide');
+        var form = $('.edit-form');
+        form.toggleClass('hide');
+        console.log(form);
       });
     }
 
