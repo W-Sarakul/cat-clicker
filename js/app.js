@@ -66,17 +66,30 @@ $(function() {
     cat.clicks++;
   },
 
-  currentCat: {
-    name: 'Mang',
-    source: 'img/pic-1.jpeg',
-    clicks: 0
-  },
+  currentCat: null,
+
+  editCat: function() {
+    var name = $('#cat-name').val();
+    var source = $('#image-url').val();
+    var clicks = $('#cat-clicks').val();
+    if (name !== '') {
+      this.currentCat.name = name;
+    }
+    if (source !== '') {
+      this.currentCat.source = source;
+    }
+    if (clicks !== '') {
+      this.currentCat.clicks = clicks;
+    }
+    alert(model.currentCat.name, model.currentCat.source);
+  }
 
 
   };
 
   var octopus = {
     init: function() {
+      model.currentCat = model.data[0];
       view.init();
       octopus.chooseCat();
       octopus.addClick();
@@ -89,7 +102,6 @@ $(function() {
         model.data.forEach(function(cat, index) {
           if (cat.name === clickElement.text()) {
             model.currentCat = model.data[index];
-            view.render(model.currentCat);
           }
         });
       });
@@ -108,7 +120,10 @@ $(function() {
         // $('.edit-form').removeClass('.hide');
         var form = $('.edit-form');
         form.toggleClass('hide');
-        console.log(form);
+        $('#save').click(function() {
+          model.editCat();
+          view.render(this.currentCat);
+        });
       });
     }
 
@@ -116,7 +131,7 @@ $(function() {
 
   var view = {
     init: function() {
-      view.render(model.data[0]);
+      view.render(model.currentCat);
     },
 
     render: function(cat) {
